@@ -1,0 +1,9 @@
+Image Downloaders
+================
+So I had a lot of free time and wanted a programming challenge.
+
+So this is a 2 day challenge.
+
+The goal make an extensible image downloader for 2 of my image source sites :p using messengine.
+
+I also did a JavaFX view but it doesn't play well with maven. :(
