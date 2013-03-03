@@ -57,7 +57,13 @@ public abstract class DownloadTask extends ImageTask {
           t++;
         }
       }
-      File file = new File(getValidFileName(getDestinationFile()));
+      String destinationFileName = getDestinationFile();
+      boolean absolutePath = destinationFileName.startsWith("/");
+      String fixedFilename = getValidFileName(destinationFileName);
+      if(absolutePath){
+        fixedFilename = "/"+fixedFilename;
+      }
+      File file = new File(fixedFilename);
       if (!file.getParentFile().exists()) {
         file.getParentFile().mkdirs();
       }
@@ -66,6 +72,7 @@ public abstract class DownloadTask extends ImageTask {
               FileOutputStream out = new FileOutputStream(file)) {
         IOUtils.copy(in, out);
       }
+      value.setMessage(file.getAbsolutePath());
       updateStatus(GalleryImage.Status.Downloaded, 100);
     } catch (Exception ex) {
       Logger.getLogger(DownloadTask.class.getName()).log(Level.SEVERE, null, ex);
