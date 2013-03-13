@@ -7,3 +7,12 @@ So this is a 2 day challenge.
 The goal make an extensible image downloader for 2 of my image source sites :p using messengine.
 
 I also did a JavaFX view but it doesn't play well with maven. :(
+
+Building:
+1. ImageCrawlerCore -> Run: mvn install
+2. ImageCrawlerSwingView -> Run: mvn install
+3. Konachanator -> Run: mvn install
+4. Sankakunator -> Run: mvn install
+5. KonachanatorSwingLauncher OR SankakunatorSwingLauncher ->
+  to run the app: mvn exec:java
+  to create zip with a bat file to run the app without maven: mvn assembly:single
