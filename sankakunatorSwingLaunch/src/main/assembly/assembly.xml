@@ -8,20 +8,20 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <dependencySets>
         <dependencySet>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>sankakunator-swing/lib</outputDirectory>
         </dependencySet>
     </dependencySets>
     <fileSets>
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory>/lib</outputDirectory>
+            <outputDirectory>sankakunator-swing/lib</outputDirectory>
             <includes>
                 <include>*.jar</include>
             </includes>
         </fileSet>
         <fileSet>
             <directory>src/main/assembly</directory>
-            <outputDirectory>/</outputDirectory>
+            <outputDirectory>sankakunator-swing/</outputDirectory>
             <includes>
                 <include>*.bat</include>
             </includes>
