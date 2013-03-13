@@ -15,4 +15,4 @@ Building:
 4. Sankakunator -> Run: mvn install
 5. KonachanatorSwingLauncher OR SankakunatorSwingLauncher ->
   to run the app: mvn exec:java
-  to create zip with a bat file to run the app without maven: mvn assembly:single
+  to create zip with a bat file to run the app without maven: mvn package assembly:single
