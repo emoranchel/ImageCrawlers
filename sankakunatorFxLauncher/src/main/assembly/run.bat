@@ -1,0 +1,1 @@
+start javaw -cp ".;lib/*" com.imagecrawl.sankakunatorfx.App
