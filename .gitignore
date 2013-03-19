@@ -166,8 +166,9 @@ pip-log.txt
 # MAVEN
 #####
 ImageCrawlerCore/target
+ImageCrawlerFxView/target
+ImageCrawlerFxView_NB
+ImageCrawlerLauncher/target
 ImageCrawlerSwingView/target
 konachanator/target
-konachanatorSwingLauncher/target
 sankakunator/target
-sankakunatorSwingLaunch/target
