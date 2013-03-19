@@ -1,4 +1,4 @@
-package com.imagecrawl.konachanatorswingcrawler;
+package com.imagecrawl.launcher;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

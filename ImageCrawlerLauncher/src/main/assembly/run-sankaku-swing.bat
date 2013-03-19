@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.konachanatorswingcrawler.App
+start javaw -cp ".;lib/*" com.imagecrawl.launcher.App sankaku swing
