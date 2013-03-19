@@ -8,20 +8,20 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <dependencySets>
         <dependencySet>
-            <outputDirectory>konachanator-swing/lib</outputDirectory>
+            <outputDirectory>ImageCrawler/lib</outputDirectory>
         </dependencySet>
     </dependencySets>
     <fileSets>
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory>konachanator-swing/lib</outputDirectory>
+            <outputDirectory>ImageCrawler/lib</outputDirectory>
             <includes>
                 <include>*.jar</include>
             </includes>
         </fileSet>
         <fileSet>
             <directory>src/main/assembly</directory>
-            <outputDirectory>konachanator-swing/</outputDirectory>
+            <outputDirectory>ImageCrawler/</outputDirectory>
             <includes>
                 <include>*.bat</include>
             </includes>

@@ -62,7 +62,7 @@ public class SankakuCrawlerFactory implements ImageCrawlFactory {
     AnalizeAction analizeAction = new AnalizeAction();
     analizeAction.setStartPage(1);
     analizeAction.setEndPage(10);
-    analizeAction.setAnalizeUrl("http://chan.sankakucomplex.com/post/index.content?page=");
+    analizeAction.setAnalizeUrl("http://chan.sankakucomplex.com/post/index.content?tags=rating%3Asafe");
     analizeAction.setMetadataUrl("http://chan.sankakucomplex.com/post/show/");
     analizeAction.setDownloadUrl("");
     analizeAction.setSavePath("/D:/pictures/sankakuComplex");

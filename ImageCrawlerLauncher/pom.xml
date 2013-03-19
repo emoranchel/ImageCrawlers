@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.image-crawl</groupId>
-  <artifactId>konachanatorSwingLauncher</artifactId>
+  <artifactId>ImageCrawlerLauncher</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>konachanatorSwingLauncher</name>
+  <name>ImageCrawlerLauncher</name>
   <url>http://maven.apache.org</url>
   <build>
     <plugins>
@@ -61,6 +61,11 @@
     <dependency>
       <groupId>com.rip.konachan</groupId>
       <artifactId>konachanator</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.image-crawl</groupId>
+      <artifactId>sankakunator</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>

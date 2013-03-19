@@ -60,7 +60,7 @@ public class KonachanCrawlerFactory implements ImageCrawlFactory {
     AnalizeAction analizeAction = new AnalizeAction();
     analizeAction.setStartPage(1);
     analizeAction.setEndPage(10);
-    analizeAction.setAnalizeUrl("http://konachan.com/post?page=");
+    analizeAction.setAnalizeUrl("http://konachan.com/post?tags=rating%3Asafe");
     analizeAction.setMetadataUrl("http://konachan.com/post/show/");
     analizeAction.setDownloadUrl("");
     analizeAction.setSavePath("/D:/pictures/konachan");
