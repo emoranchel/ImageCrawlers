@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="471.0000999999975" prefWidth="715.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <Button fx:id="btnLeech" mnemonicParsing="false" onAction="onLeechClick" prefHeight="21.0" prefWidth="207.0" text="Leech!" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+    <TableView fx:id="table" prefHeight="299.0" prefWidth="719.0" style="background: #223344;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="69.0">
+      <columns>
+        <TableColumn prefWidth="30.0" text="#" />
+        <TableColumn prefWidth="75.0" text="Field" />
+        <TableColumn prefWidth="150.0" text="Status" />
+        <TableColumn prefWidth="75.0" text="Progress" />
+        <TableColumn prefWidth="100.0" text="Rating" />
+        <TableColumn prefWidth="100.0" text="Tags" />
+        <TableColumn prefWidth="150.0" text="Message" />
+      </columns>
+      <rotationAxis>
+        <Point3D y="1.0" />
+      </rotationAxis>
+    </TableView>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Save To:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="16.05" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Leech URL" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="41.05" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From Page:" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="44.05" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To Page:" AnchorPane.rightAnchor="72.0" AnchorPane.topAnchor="44.05" />
+    <TextField id="txtSavedTo" fx:id="txtSaveTo" prefWidth="408.0" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="228.0" AnchorPane.topAnchor="14.0" />
+    <TextField fx:id="txtUrl" prefWidth="408.0" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="228.0" AnchorPane.topAnchor="38.0" />
+    <TextField fx:id="txtFrom" layoutX="552.0" layoutY="41.0" prefWidth="45.375" text="1" />
+    <TextField fx:id="txtTo" layoutX="642.0" layoutY="41.0" prefWidth="45.375" text="10" />
+  </children>
+</AnchorPane>

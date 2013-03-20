@@ -23,7 +23,8 @@
             <directory>src/main/assembly</directory>
             <outputDirectory>ImageCrawler/</outputDirectory>
             <includes>
-                <include>*.bat</include>
+                <include>run-konachan-swing.bat</include>
+                <include>run-sankaku-swing.bat</include>
             </includes>
         </fileSet>
     </fileSets>
