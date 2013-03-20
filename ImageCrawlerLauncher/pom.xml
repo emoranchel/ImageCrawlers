@@ -33,7 +33,7 @@
                 </executions>
                 <configuration>
                     <executable>maven</executable>
-                    <mainClass>com.imagecrawl.konachanatorswingcrawler.App</mainClass>
+                    <mainClass>com.imagecrawl.launcher.App</mainClass>
                 </configuration>
             </plugin>
             <plugin>
