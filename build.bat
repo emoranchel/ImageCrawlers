@@ -14,6 +14,6 @@ cd sankakunator
 call mvn install
 cd ..
 cd ImageCrawlerLauncher
-call mvn package assembly:single
+call mvn install assembly:single
 cd ..
 copy ImageCrawlerLauncher\target\*.zip . /Y
