@@ -25,6 +25,7 @@
             <includes>
                 <include>run-konachan-swing.bat</include>
                 <include>run-sankaku-swing.bat</include>
+                <include>run-danbooru-swing.bat</include>
             </includes>
         </fileSet>
     </fileSets>

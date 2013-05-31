@@ -13,6 +13,9 @@ cd ..
 cd sankakunator
 call mvn install
 cd ..
+cd danboorunator
+call mvn install
+cd ..
 cd ImageCrawlerLauncher
 call mvn install assembly:single
 cd ..

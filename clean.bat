@@ -16,3 +16,6 @@ cd ..
 cd sankakunator
 call mvn clean
 cd ..
+cd danboorunator
+call mvn clean
+cd ..
