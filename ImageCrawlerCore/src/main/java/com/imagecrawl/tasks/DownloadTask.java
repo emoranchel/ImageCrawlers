@@ -11,12 +11,31 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.asmatron.messengine.ControlEngine;
 import org.asmatron.messengine.MessEngine;
 
 public abstract class DownloadTask extends ImageTask {
+
+    private static final String REGEX = ""
+            + ""//                                 # Match a valid Windows filename (unspecified file system)
+            + "^"//                                # Anchor to start of string
+            + "(?!"//                              # Assert filename is not: CON, PRN,
+            + "  (?:"//                            # AUX, NUL, COM1, COM2, COM3, COM4,
+            + "    CON|PRN|AUX|NUL|"//             # COM5, COM6, COM7, COM8, COM9,
+            + "    COM[1-9]|LPT[1-9]"//            # LPT1, LPT2, LPT3, LPT4, LPT5,
+            + "  )"//                              # LPT6, LPT7, LPT8, and LPT9...
+            + "  (?:\\.[^.]*)?"//                  # followed by optional extension
+            + "  $"//                              # and end of string
+            + ")"//                                # End negative lookahead assertion.
+            + "[^<>:\"/\\\\|?*\\x00-\\x1F]*"//     # Zero or more valid filename chars.
+            + "[^<>:\"/\\\\|?*\\x00-\\x1F\\ .]"//  # Last char is not a space or dot.
+            + "$/";//                              # Anchor to end of string.
+    private static final Pattern PATTERN = Pattern.compile(REGEX,
+            Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE | Pattern.COMMENTS);
 
     public DownloadTask(ExecutorService executorService, MessEngine messEngine, ControlEngine controlEngine, CrawlerMessage<GalleryImage> crawlerMessage) {
         super(executorService, messEngine, controlEngine, crawlerMessage);
@@ -91,13 +110,12 @@ public abstract class DownloadTask extends ImageTask {
         }
     }
 
-    public static boolean validateFileName(String fileName) {
-        return fileName.matches("^[^.\\\\/:*?\"<>|]?[^\\\\/:*?\"<>|]*")
-                && getValidFileName(fileName).length() > 0;
-    }
-
     public static String getValidFileName(String fileName) {
-        String newFileName = fileName.replaceAll("^[.\\\\/:*?\"<>|]?[\\\\/:*?\"<>|]*", "");
+        String newFileName = fileName.replaceAll("\\?", "");
+        while(newFileName.contains("..")){
+            newFileName=newFileName.replaceAll("\\.\\.", "");
+        }
+        newFileName = newFileName.replaceAll(REGEX, "");
         if (newFileName.length() == 0) {
             throw new IllegalStateException(
                     "File Name " + fileName + " results in a empty fileName!");

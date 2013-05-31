@@ -5,6 +5,7 @@ import com.imagecrawl.engine.XtendedEngine;
 import com.imagecrawl.engine.XtendedEngineConfigurator;
 import com.imagecrawl.sankakunator.SankakuCrawlerFactory;
 import com.imagecrawl.services.Analizer;
+import com.rip.danbooru.DanbooruCrawlerFactory;
 import com.rip.konachan.konachanator.KonachanCrawlerFactory;
 
 public class App {
@@ -22,6 +23,9 @@ public class App {
         if (containArg(args, "sankaku")) {
             engine.set(API.Model.FACTORY, new SankakuCrawlerFactory(engine, engine), null);
             engine.set(API.Model.TITLE, "Konachan.com", null);
+        } else if (containArg(args, "danbooru")) {
+            engine.set(API.Model.FACTORY, new DanbooruCrawlerFactory(engine, engine), null);
+            engine.set(API.Model.TITLE, "Danbooru.donmai.us", null);
         } else {
             engine.set(API.Model.FACTORY, new KonachanCrawlerFactory(engine, engine), null);
             engine.set(API.Model.TITLE, "Konachan.com", null);
