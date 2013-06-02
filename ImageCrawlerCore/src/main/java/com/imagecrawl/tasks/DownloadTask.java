@@ -11,7 +11,6 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -113,9 +112,14 @@ public abstract class DownloadTask extends ImageTask {
     public static String getValidFileName(String fileName) {
         String newFileName = fileName.replaceAll("\\?", "");
         while(newFileName.contains("..")){
-            newFileName=newFileName.replaceAll("\\.\\.", "");
+            newFileName=newFileName.replaceAll("\\.\\.", ".");
         }
         newFileName = newFileName.replaceAll(REGEX, "");
+        newFileName = newFileName.trim();
+        while(newFileName.endsWith(".")){
+            newFileName = newFileName.substring(0, newFileName.length()-1);
+            newFileName = newFileName.trim();
+        }
         if (newFileName.length() == 0) {
             throw new IllegalStateException(
                     "File Name " + fileName + " results in a empty fileName!");
