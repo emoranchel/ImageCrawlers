@@ -21,22 +21,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <executable>maven</executable>
-                    <mainClass>com.imagecrawl.launcher.App</mainClass>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -71,6 +55,11 @@
         <dependency>
             <groupId>com.image-crawl</groupId>
             <artifactId>sankakunator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.image-crawl</groupId>
+            <artifactId>sankakutop</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
