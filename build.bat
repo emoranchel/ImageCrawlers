@@ -13,6 +13,9 @@ cd ..
 cd sankakunator
 call mvn install
 cd ..
+cd sankakuTop
+call mvn install
+cd ..
 cd danboorunator
 call mvn install
 cd ..
