@@ -12,11 +12,11 @@ import java.util.Set;
 import org.asmatron.messengine.annotations.EventMethod;
 import org.asmatron.messengine.engines.Engine;
 
-class HeadLessView implements View {
+class ConsoleView implements View {
 
   private Engine engine;
 
-  public HeadLessView(XtendedEngine engine) {
+  public ConsoleView(XtendedEngine engine) {
   }
 
   @Override
@@ -58,5 +58,13 @@ class HeadLessView implements View {
         lastMsg.add(logMsg);
       }
     }
+  }
+
+  @Override
+  public void onEngineStart() {
+  }
+
+  @Override
+  public void onEngineStop() {
   }
 }

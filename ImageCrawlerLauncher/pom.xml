@@ -72,12 +72,5 @@
             <artifactId>ImageCrawlerFxView</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>javafx-runtime</artifactId>
-            <scope>system</scope>
-            <version>2.1.1</version>
-            <systemPath>${java.home}/lib/jfxrt.jar</systemPath>
-        </dependency>
     </dependencies>
 </project>

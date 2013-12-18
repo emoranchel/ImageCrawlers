@@ -6,6 +6,8 @@ package com.imagecrawl.engine;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.asmatron.messengine.engines.DefaultEngine;
 
 /**
@@ -15,10 +17,11 @@ import org.asmatron.messengine.engines.DefaultEngine;
 public class XtendedEngine extends DefaultEngine {
 
   private final Set<EngineListener> listeners;
+  private final Object endLock = new Object();
 
   public XtendedEngine() {
     super();
-    this.listeners = new HashSet<EngineListener>();
+    this.listeners = new HashSet<>();
 
   }
 
@@ -36,6 +39,9 @@ public class XtendedEngine extends DefaultEngine {
       listener.onEngineStop();
     }
     super.stop();
+    synchronized (endLock) {
+      endLock.notifyAll();
+    }
   }
 
   public void addEngineListener(EngineListener engineListener) {
@@ -44,5 +50,17 @@ public class XtendedEngine extends DefaultEngine {
 
   public void removeEngineListener(EngineListener engineListener) {
     listeners.add(engineListener);
+  }
+
+  public void awaitStop() {
+    synchronized (endLock) {
+      try {
+        endLock.wait();
+      } catch (InterruptedException ex) {
+        Logger.getLogger(XtendedEngine.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      endLock.notifyAll();
+    }
+
   }
 }
