@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=%JAVA_HOME%\jre\lib\jfxrt.jar -DgroupId=com.oracle -DartifactId=javafx-runtime -Dpackaging=jar -Dversion=2.1.1

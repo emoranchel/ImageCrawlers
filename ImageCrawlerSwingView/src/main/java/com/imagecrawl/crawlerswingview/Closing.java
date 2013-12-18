@@ -28,7 +28,7 @@ public class Closing extends javax.swing.JFrame {
 
     jLabel1 = new javax.swing.JLabel();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
     jLabel1.setText("The application is shutting down close this window to force shutdown.");
 
