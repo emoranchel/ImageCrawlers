@@ -32,7 +32,7 @@ public class SwingApplication extends BaseApp implements EngineListener {
 
     Analizer analizer = new Analizer(engine, engine);
     MainWindow mainWindow = new MainWindow(engine);
-    App.setupFactory(getParameters().getRaw().toArray(new String[]{}), engine);
+    //App.setupFactory(getParameters().getRaw().toArray(new String[]{}), engine);
 
     configurator.setup(analizer, mainWindow);
     engine.addEngineListener(this);
