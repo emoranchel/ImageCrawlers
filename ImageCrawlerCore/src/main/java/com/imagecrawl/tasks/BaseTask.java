@@ -51,8 +51,8 @@ public abstract class BaseTask<T> implements Runnable {
   }
 
   protected HttpResponse httpGet(String string) throws Exception {
-    HttpClient httpClient = new DefaultHttpClient();
-    return httpClient.execute(new HttpGet(string));
+    HttpHandler httpHandler = controlEngine.get(API.Model.HTTP_HANDLER);
+    return httpHandler.get(string);
   }
 
   public <T extends Object> void fireValueEvent(EventId<ValueEvent<T>> arg0, T arg1) {

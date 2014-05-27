@@ -2,6 +2,7 @@ package com.imagecrawl.api;
 
 import com.imagecrawl.ImageCrawlFactory;
 import com.imagecrawl.model.GalleryImage;
+import com.imagecrawl.tasks.HttpHandler;
 import org.asmatron.messengine.action.ActionId;
 import org.asmatron.messengine.event.EmptyEvent;
 import org.asmatron.messengine.event.EventId;
@@ -11,7 +12,8 @@ import org.asmatron.messengine.model.ModelId;
 public interface API {
 
   public interface Model {
-
+    String HTTP_HANDLER_ID = "httpHandlerId";
+    ModelId<HttpHandler> HTTP_HANDLER = ModelId.readOnly(HTTP_HANDLER_ID);
     String TITLE_ID = "title";
     ModelId<String> TITLE = ModelId.readOnly(TITLE_ID);
     String FACTORY_ID = "factory";

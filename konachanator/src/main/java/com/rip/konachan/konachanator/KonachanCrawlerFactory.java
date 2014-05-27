@@ -32,7 +32,7 @@ public class KonachanCrawlerFactory implements ImageCrawlFactory {
   
   @Override
   public ExecutorService getDownloadExecutorService() {
-    return Executors.newFixedThreadPool(4);
+    return Executors.newFixedThreadPool(2);
   }
   
   @Override

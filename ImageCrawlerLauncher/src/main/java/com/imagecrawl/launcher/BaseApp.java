@@ -62,15 +62,13 @@ public abstract class BaseApp {
     this.parameters = new Parameters(args);
   }
 
-  public void init() {
-  }
+  public abstract void init();
 
-  public void stop() {
-  }
+  public abstract void stop();
 
   public abstract void start();
 
-  protected void setupFactory(String[] args, Engine engine) {
+  protected void setupFactory(Engine engine) {
     if (parameters.getRaw().contains("konachan")) {
       engine.set(API.Model.FACTORY, new KonachanCrawlerFactory(engine, engine), null);
       engine.set(API.Model.TITLE, "Konachan.com", null);

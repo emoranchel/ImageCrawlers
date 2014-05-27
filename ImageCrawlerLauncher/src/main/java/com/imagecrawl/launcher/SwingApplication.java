@@ -1,17 +1,24 @@
 package com.imagecrawl.launcher;
 
+import com.imagecrawl.api.API;
 import com.imagecrawl.crawlerswingview.Closing;
 import com.imagecrawl.crawlerswingview.MainWindow;
 import com.imagecrawl.engine.EngineListener;
 import com.imagecrawl.engine.XtendedEngine;
 import com.imagecrawl.engine.XtendedEngineConfigurator;
 import com.imagecrawl.services.Analizer;
+import com.imagecrawl.tasks.HttpHandler;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 public class SwingApplication extends BaseApp implements EngineListener {
 
@@ -32,7 +39,35 @@ public class SwingApplication extends BaseApp implements EngineListener {
 
     Analizer analizer = new Analizer(engine, engine);
     MainWindow mainWindow = new MainWindow(engine);
-    //App.setupFactory(getParameters().getRaw().toArray(new String[]{}), engine);
+    engine.set(API.Model.HTTP_HANDLER, new HttpHandler() {
+
+      @Override
+      public HttpResponse get(String string) throws Exception {
+        int retry = 0;
+        HttpResponse response = null;
+        do {
+          try {
+            HttpClient httpClient = new DefaultHttpClient();
+            response = httpClient.execute(new HttpGet(string));
+            if (response.getStatusLine().getStatusCode() == 200) {
+              return response;
+            } else {
+              throw new Exception("Response returned: " + response.getStatusLine());
+            }
+          } catch (Exception e) {
+            if (retry < 3) {
+              retry++;
+              Thread.sleep(10000);
+            } else {
+              throw e;
+            }
+          }
+        } while (retry < 3);
+        return response;
+      }
+    }, null);
+
+    setupFactory(engine);
 
     configurator.setup(analizer, mainWindow);
     engine.addEngineListener(this);
