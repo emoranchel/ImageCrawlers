@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.imagecrawl.engine;
 
 import java.lang.reflect.Method;
 import org.asmatron.messengine.util.MethodInvoker;
 
-/**
- *
- * @author Eduardo
- */
 public class StopEngineMethodHandler extends MethodInvoker implements
         EngineListener {
 

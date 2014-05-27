@@ -28,16 +28,12 @@ public class XtendedEngine extends DefaultEngine {
   @Override
   public void start() {
     super.start();
-    for (EngineListener listener : listeners) {
-      listener.onEngineStart();
-    }
+    listeners.stream().forEach(EngineListener::onEngineStart);
   }
 
   @Override
   public void stop() {
-    for (EngineListener listener : listeners) {
-      listener.onEngineStop();
-    }
+    listeners.stream().forEach(EngineListener::onEngineStop);
     super.stop();
     synchronized (endLock) {
       endLock.notifyAll();

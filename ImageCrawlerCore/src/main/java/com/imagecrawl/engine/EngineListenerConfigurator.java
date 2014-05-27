@@ -20,12 +20,12 @@ class EngineListenerConfigurator {
     if (object instanceof EngineListener) {
       engineController.addEngineListener((EngineListener) object);
     }
-    for (Method method : getMethods(object.getClass(), EngineStart.class)) {
-      engineController.addEngineListener(new StartEngineMethodHandler(object, method));
-    }
-    for (Method method : getMethods(object.getClass(), EngineStop.class)) {
-      engineController.addEngineListener(new StopEngineMethodHandler(object, method));
-    }
+    getMethods(object.getClass(), EngineStart.class).stream().forEach((method)
+            -> engineController.addEngineListener(new StartEngineMethodHandler(object, method))
+    );
+    getMethods(object.getClass(), EngineStop.class).stream().forEach((method)
+            -> engineController.addEngineListener(new StopEngineMethodHandler(object, method))
+    );
   }
 
   public void resetListeners(Object object) {
@@ -44,7 +44,7 @@ class EngineListenerConfigurator {
 
   private List<Method> getMethods(Class<?> objectClass,
           Class<? extends Annotation> annotationClass) {
-    List<Method> methods = new ArrayList<Method>();
+    List<Method> methods = new ArrayList<>();
     getMethods(objectClass, annotationClass, methods);
     return methods;
   }
