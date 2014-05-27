@@ -1,10 +1,16 @@
 package com.imagecrawl.launcher;
 
+import com.imagecrawl.api.API;
+import com.imagecrawl.sankakunator.SankakuCrawlerFactory;
+import com.imagecrawl.sankakutop.SankakuTopCrawlerFactory;
+import com.rip.danbooru.DanbooruCrawlerFactory;
+import com.rip.konachan.konachanator.KonachanCrawlerFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.asmatron.messengine.engines.Engine;
 
 public abstract class BaseApp {
 
@@ -63,4 +69,21 @@ public abstract class BaseApp {
   }
 
   public abstract void start();
+
+  protected void setupFactory(String[] args, Engine engine) {
+    if (parameters.getRaw().contains("konachan")) {
+      engine.set(API.Model.FACTORY, new KonachanCrawlerFactory(engine, engine), null);
+      engine.set(API.Model.TITLE, "Konachan.com", null);
+    } else if (parameters.getRaw().contains("sankaku")) {
+      engine.set(API.Model.FACTORY, new SankakuCrawlerFactory(engine, engine), null);
+      engine.set(API.Model.TITLE, "SankakuComplex.com", null);
+    } else if (parameters.getRaw().contains("danbooru")) {
+      engine.set(API.Model.FACTORY, new DanbooruCrawlerFactory(engine, engine), null);
+      engine.set(API.Model.TITLE, "Danbooru.donmai.us", null);
+    } else if (parameters.getRaw().contains("sankakuTop")) {
+      engine.set(API.Model.FACTORY, new SankakuTopCrawlerFactory(engine, engine), null);
+      engine.set(API.Model.TITLE, "SankakuTop.com", null);
+    }
+  }
+
 }
