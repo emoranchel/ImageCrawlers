@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.imagecrawl.engine;
 
 import org.asmatron.messengine.engines.support.EngineConfigurator;
 
-/**
- *
- * @author Eduardo
- */
 public class XtendedEngineConfigurator extends EngineConfigurator {
 
   private final EngineListenerConfigurator engineListenerConfigurator;
