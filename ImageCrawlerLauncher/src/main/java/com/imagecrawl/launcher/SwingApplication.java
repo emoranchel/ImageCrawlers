@@ -3,15 +3,12 @@ package com.imagecrawl.launcher;
 import com.imagecrawl.api.API;
 import com.imagecrawl.crawlerswingview.Closing;
 import com.imagecrawl.crawlerswingview.MainWindow;
-import com.imagecrawl.engine.EngineListener;
-import com.imagecrawl.engine.XtendedEngine;
-import com.imagecrawl.engine.XtendedEngineConfigurator;
 import com.imagecrawl.services.Analizer;
 import com.imagecrawl.tasks.HttpHandler;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,10 +16,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.asmatron.messengine.EngineListener;
+import org.asmatron.messengine.engines.DefaultEngine;
+import org.asmatron.messengine.engines.Engine;
+import org.asmatron.messengine.engines.support.EngineConfigurator;
 
-public class SwingApplication extends BaseApp implements EngineListener {
+public class SwingApplication extends BaseApp {
 
-  private XtendedEngine engine;
+  private Engine engine;
 
   private SwingApplication(String... args) {
     super(args);
@@ -30,12 +31,12 @@ public class SwingApplication extends BaseApp implements EngineListener {
 
   @Override
   public void init() {
-    engine = new XtendedEngine();
+    engine = new DefaultEngine();
   }
 
   @Override
   public void start() {
-    XtendedEngineConfigurator configurator = new XtendedEngineConfigurator(engine);
+    EngineConfigurator configurator = new EngineConfigurator(engine);
 
     Analizer analizer = new Analizer(engine, engine);
     MainWindow mainWindow = new MainWindow(engine);
@@ -70,12 +71,14 @@ public class SwingApplication extends BaseApp implements EngineListener {
     setupFactory(engine);
 
     configurator.setup(analizer, mainWindow);
-    engine.addEngineListener(this);
+    final Semaphore lock = new Semaphore(0);
 
     mainWindow.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
-        engine.stop();
+        engine.stop(() -> {
+          lock.release();
+        });
         e.getWindow().dispose();
       }
     });
@@ -83,7 +86,11 @@ public class SwingApplication extends BaseApp implements EngineListener {
     mainWindow.setVisible(true);
 
     engine.start();
-    engine.awaitStop();
+    try {
+      lock.acquire();
+    } catch (InterruptedException ex) {
+      Logger.getLogger(SwingApplication.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     Closing closingWindow = new Closing();
     closingWindow.addWindowListener(new WindowAdapter() {
@@ -105,14 +112,6 @@ public class SwingApplication extends BaseApp implements EngineListener {
   public void stop() {
     //safety call... just in case the app does not close correctly
     System.exit(0);
-  }
-
-  @Override
-  public void onEngineStart() {
-  }
-
-  @Override
-  public void onEngineStop() {
   }
 
   public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package com.imagecrawl.launcher;
 
-import com.imagecrawl.engine.XtendedEngineConfigurator;
 import com.imagecrawl.fx.FxApplication;
 import com.imagecrawl.fx.MainWindowController;
 import com.imagecrawl.services.Analizer;
@@ -8,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.asmatron.messengine.ViewEngine;
 import org.asmatron.messengine.engines.Engine;
+import org.asmatron.messengine.engines.support.EngineConfigurator;
 
 class FxView implements View {
 
@@ -18,7 +18,7 @@ class FxView implements View {
   }
 
   @Override
-  public void setup(XtendedEngineConfigurator configurator) {
+  public void setup(EngineConfigurator configurator) {
     configurator.setup(controller);
   }
 
@@ -32,10 +32,19 @@ class FxView implements View {
   }
 
   @Override
-  public void onEngineStart() {
+  public void onEngineStarting() {
   }
 
   @Override
-  public void onEngineStop() {
+  public void onEngineStarted() {
   }
+
+  @Override
+  public void onEngineStoping() {
+  }
+
+  @Override
+  public void onEngineStoped() {
+  }
+
 }
