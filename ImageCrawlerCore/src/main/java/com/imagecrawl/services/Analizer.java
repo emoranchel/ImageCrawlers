@@ -4,11 +4,11 @@ import com.imagecrawl.ImageCrawlFactory;
 import com.imagecrawl.api.API;
 import com.imagecrawl.api.AnalizeAction;
 import com.imagecrawl.api.CrawlerMessage;
-import com.imagecrawl.engine.EngineListener;
 import com.imagecrawl.model.GalleryImage;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import org.asmatron.messengine.ControlEngine;
+import org.asmatron.messengine.EngineListener;
 import org.asmatron.messengine.MessEngine;
 import org.asmatron.messengine.annotations.ActionMethod;
 import org.asmatron.messengine.annotations.MessageMethod;
@@ -28,7 +28,7 @@ public class Analizer implements EngineListener {
   }
 
   @Override
-  public void onEngineStart() {
+  public void onEngineStarted() {
     crawlFactory = controlEngine.get(API.Model.FACTORY);
     analizerExecutorService = crawlFactory.getAnalizerExecutorService();
     metadataExecutorService = crawlFactory.getMetadataExecutorService();
@@ -76,7 +76,7 @@ public class Analizer implements EngineListener {
   }
 
   @Override
-  public void onEngineStop() {
+  public void onEngineStoped() {
     analizerExecutorService.shutdown();
     metadataExecutorService.shutdown();
     downloadExecutorService.shutdown();
@@ -86,5 +86,13 @@ public class Analizer implements EngineListener {
     analizerExecutorService.awaitTermination(timeout, timeUnit);
     metadataExecutorService.awaitTermination(timeout, timeUnit);
     downloadExecutorService.awaitTermination(timeout, timeUnit);
+  }
+
+  @Override
+  public void onEngineStarting() {
+  }
+
+  @Override
+  public void onEngineStoping() {
   }
 }

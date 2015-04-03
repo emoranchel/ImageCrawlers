@@ -132,7 +132,7 @@ public abstract class DownloadTask extends ImageTask {
     protected abstract String getDestinationFile();
     private static final Object lock = new Object();
 
-    private void addToDownloads() {
+    protected void addToDownloads() {
         synchronized (lock) {
             File dir = new File(action.getSavePath());
             try (FileOutputStream out = new FileOutputStream(new File(dir, "downloads.data"), true)) {

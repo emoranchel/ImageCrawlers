@@ -2,8 +2,6 @@ package com.imagecrawl.launcher;
 
 import com.imagecrawl.api.API;
 import com.imagecrawl.api.AnalizeAction;
-import com.imagecrawl.engine.XtendedEngine;
-import com.imagecrawl.engine.XtendedEngineConfigurator;
 import com.imagecrawl.model.GalleryImage;
 import com.imagecrawl.services.Analizer;
 import java.util.Collections;
@@ -11,16 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 import org.asmatron.messengine.annotations.EventMethod;
 import org.asmatron.messengine.engines.Engine;
+import org.asmatron.messengine.engines.support.EngineConfigurator;
 
 class ConsoleView implements View {
 
   private Engine engine;
 
-  public ConsoleView(XtendedEngine engine) {
-  }
-
   @Override
-  public void setup(XtendedEngineConfigurator configurator) {
+  public void setup(EngineConfigurator configurator) {
     configurator.setup(this);
   }
 
@@ -48,7 +44,7 @@ class ConsoleView implements View {
     System.out.println("DONE");
     engine.stop();
   }
-  private Set<String> lastMsg = Collections.synchronizedSet(new HashSet<String>());
+  private final Set<String> lastMsg = Collections.synchronizedSet(new HashSet<String>());
 
   private void log(GalleryImage image) {
     String logMsg = image.getPage() + "[" + image.getId() + "]" + image.getStatus();
@@ -61,10 +57,19 @@ class ConsoleView implements View {
   }
 
   @Override
-  public void onEngineStart() {
+  public void onEngineStarting() {
   }
 
   @Override
-  public void onEngineStop() {
+  public void onEngineStarted() {
   }
+
+  @Override
+  public void onEngineStoping() {
+  }
+
+  @Override
+  public void onEngineStoped() {
+  }
+
 }

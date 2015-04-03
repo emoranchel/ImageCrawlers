@@ -7,7 +7,6 @@ package com.imagecrawl.fx;
  */
 import com.imagecrawl.api.API;
 import com.imagecrawl.api.AnalizeAction;
-import com.imagecrawl.engine.EngineStart;
 import com.imagecrawl.model.GalleryImage;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import org.asmatron.messengine.ViewEngine;
 import org.asmatron.messengine.annotations.EventMethod;
 
