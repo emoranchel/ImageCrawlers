@@ -86,6 +86,7 @@ public abstract class DownloadTask extends ImageTask {
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
+            file.createNewFile();
             try (
                     FileInputStream in = new FileInputStream(temporaryDownload);
                     FileOutputStream out = new FileOutputStream(file)) {
@@ -115,6 +116,8 @@ public abstract class DownloadTask extends ImageTask {
             newFileName=newFileName.replaceAll("\\.\\.", ".");
         }
         newFileName = newFileName.replaceAll(REGEX, "");
+        newFileName = newFileName.replaceAll("\\\"", "'");
+        newFileName = newFileName.replaceAll("\\*", "");
         newFileName = newFileName.trim();
         while(newFileName.endsWith(".")){
             newFileName = newFileName.substring(0, newFileName.length()-1);
