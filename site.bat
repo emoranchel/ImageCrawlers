@@ -2,27 +2,26 @@ cd ImageCrawlerParent
 call mvn install
 cd ..
 cd ImageCrawlerCore
-call mvn install
+call mvn site
 cd ..
 cd ImageCrawlerSwingView
-call mvn install
+call mvn site
 cd ..
 cd ImageCrawlerFxView
-call mvn install
+call mvn site
 cd ..
 cd konachanator
-call mvn install
+call mvn site
 cd ..
 cd sankakunator
-call mvn install
+call mvn site
 cd ..
 cd sankakuTop
-call mvn install
+call mvn site
 cd ..
 cd danboorunator
-call mvn install
+call mvn site
 cd ..
 cd ImageCrawlerLauncher
-call mvn install assembly:single
+call mvn site
 cd ..
-copy ImageCrawlerLauncher\target\*.zip . /Y

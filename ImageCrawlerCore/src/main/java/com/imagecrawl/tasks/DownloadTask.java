@@ -112,15 +112,18 @@ public abstract class DownloadTask extends ImageTask {
 
     public static String getValidFileName(String fileName) {
         String newFileName = fileName.replaceAll("\\?", "");
-        while(newFileName.contains("..")){
-            newFileName=newFileName.replaceAll("\\.\\.", ".");
+        while (newFileName.contains("..")) {
+            newFileName = newFileName.replaceAll("\\.\\.", ".");
         }
         newFileName = newFileName.replaceAll(REGEX, "");
         newFileName = newFileName.replaceAll("\\\"", "'");
         newFileName = newFileName.replaceAll("\\*", "");
+        if (newFileName.length() > 5) {
+            newFileName = newFileName.substring(0, 4) + newFileName.substring(4).replaceAll("\\:", "-");
+        }
         newFileName = newFileName.trim();
-        while(newFileName.endsWith(".")){
-            newFileName = newFileName.substring(0, newFileName.length()-1);
+        while (newFileName.endsWith(".")) {
+            newFileName = newFileName.substring(0, newFileName.length() - 1);
             newFileName = newFileName.trim();
         }
         if (newFileName.length() == 0) {

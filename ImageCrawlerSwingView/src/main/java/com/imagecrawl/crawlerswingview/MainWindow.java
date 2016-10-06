@@ -57,7 +57,9 @@ public class MainWindow extends javax.swing.JFrame {
   @EngineStarted
   public void init() {
     AnalizeAction action = viewEngine.get(API.Model.FACTORY).newAction();
-    jTextField1.setText(action.getSavePath());
+      String path = System.getProperty("user.home") +"/pictures/"+ action.getSavePath();
+      path=path.replaceAll("\\\\", "/");
+    jTextField1.setText(path);
     jTextField2.setText(action.getAnalizeUrl());
     setTitle(viewEngine.get(API.Model.TITLE));
   }
