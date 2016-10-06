@@ -63,7 +63,7 @@ public class DanbooruCrawlerFactory implements ImageCrawlFactory {
         analizeAction.setAnalizeUrl("http://danbooru.donmai.us/posts?tags=rating%3Asafe");
         analizeAction.setMetadataUrl("http://danbooru.donmai.us/posts/");
         analizeAction.setDownloadUrl("http://danbooru.donmai.us");
-        analizeAction.setSavePath("/D:/pictures/danbooru");
+        analizeAction.setSavePath("danbooru");
         return analizeAction;
     }
 }

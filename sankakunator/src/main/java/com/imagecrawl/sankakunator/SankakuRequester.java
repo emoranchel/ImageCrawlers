@@ -16,6 +16,7 @@ public class SankakuRequester {
   }
 
   private synchronized HttpResponse doGet(HttpGet get) throws IOException, InterruptedException {
+      System.out.println(get);
     long targetTime = lastRequest + interval;
     long currentTimeMillis = System.currentTimeMillis();
     if (targetTime > currentTimeMillis) {

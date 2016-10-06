@@ -1,8 +1,13 @@
 package com.imagecrawl.launcher;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.asmatron.messengine.engines.components.MessageConsumer;
+
 public class App {
 
   public static void main(String[] args) throws Exception {
+      Logger.getLogger(MessageConsumer.class.getName()).setLevel(Level.SEVERE);
      if (containArg(args, "-fx")) {
       FxApplication.main(args);
     } else if (containArg(args, "-swing")) {

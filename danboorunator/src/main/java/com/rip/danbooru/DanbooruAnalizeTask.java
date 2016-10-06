@@ -52,8 +52,10 @@ public class DanbooruAnalizeTask extends AnalizeTask {
                             break;
                         }
                     }
+                    try{
                     int id = Integer.parseInt(idStr.toString());
                     addImage(id, path);
+                    }catch(Exception e){}
                 }
             }
         }

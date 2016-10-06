@@ -15,6 +15,12 @@ public class DownloadTaskTest {
                 ));
 
         assertEquals(
+                "/D:/pictures/konachan/Questionable/156229.desu_yo-a.jpg", //
+                DownloadTask.getValidFileName(
+                "/D:/pictures/konachan/Questionable/156229.desu_yo:a.jpg" //
+                ));
+
+        assertEquals(
                 "D:/pictures/danbooru/Safe/1431199.k-on!.akiyama_mio.hirasawa_yui.kotobuki_tsumugi.tainaka_ritsu.2girls.4girls.black_eyes.black_hair.blonde_hair.blue_eyes.blush.brown_eyes.brown_hair.long_hair.lowres.multiple_girls.jpg", //
                 DownloadTask.getValidFileName(
                 "D:/pictures/danbooru/Safe/1431199.k-on!.akiyama_mio.hirasawa_yui.kotobuki_tsumugi.tainaka_ritsu.2girls.4girls.black_eyes.black_hair.blonde_hair.blue_eyes.blush.brown_eyes.brown_hair.long_hair.lowres.multiple_girls.jpg" //

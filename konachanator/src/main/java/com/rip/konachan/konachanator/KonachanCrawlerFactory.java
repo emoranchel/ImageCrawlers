@@ -63,7 +63,7 @@ public class KonachanCrawlerFactory implements ImageCrawlFactory {
     analizeAction.setAnalizeUrl("http://konachan.com/post?tags=rating%3Asafe");
     analizeAction.setMetadataUrl("http://konachan.com/post/show/");
     analizeAction.setDownloadUrl("");
-    analizeAction.setSavePath("/D:/pictures/konachan");
+    analizeAction.setSavePath("konachan");
     return analizeAction;
   }
 }
