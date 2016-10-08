@@ -5,11 +5,13 @@
   <parent>
     <groupId>com.image-crawl</groupId>
     <artifactId>ImageCrawlerParent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.3.0-SNAPSHOT</version>
+    <relativePath>../ImageCrawlerParent/pom.xml</relativePath>
   </parent>
 
   <groupId>com.image-crawl</groupId>
   <artifactId>ImageCrawlerCore</artifactId>
+  <version>1.3.0-SNAPSHOT</version>
 
   <packaging>jar</packaging>
 
