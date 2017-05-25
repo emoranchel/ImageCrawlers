@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.launcher.App konachan headless
+java -cp lib/* com.imagecrawl.launcher.App konachan %*

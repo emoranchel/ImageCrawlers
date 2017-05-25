@@ -65,12 +65,17 @@ public class KonachanMetadataTask extends MetadataTask {
       if (inTagList && href != null && href.startsWith("/post?tags=")) {
         value.addTag(href.substring(11), getTagType(tagType));
       }
-      if (href != null
-              && href.startsWith("http://konachan.com/image/")
-              && href.contains("Konachan.com")
-              && cssclass != null
-              && cssclass.contains("original-file")) {
-        value.setRealUrl(href);
+
+      if (href != null) {
+        if (href.startsWith("//")) {
+          href = "http:" + href;
+        }
+        if (href.startsWith("http://konachan.com/image/")
+                && href.contains("Konachan.com")
+                && cssclass != null
+                && cssclass.contains("original-file")) {
+          value.setRealUrl(href);
+        }
       }
     }
   }

@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.launcher.App sankaku fx
+start javaw -cp lib/* com.imagecrawl.launcher.App -fx sankaku

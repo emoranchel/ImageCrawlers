@@ -43,7 +43,10 @@ class SankakuTopAnalizeTask extends BaseTask<Integer> {
       JsonArray jsonArray = jsonReader.readArray();
       for (JsonObject jsonObject : jsonArray.getValuesAs(JsonObject.class)) {
         String detailPage = jsonObject.getString("href");
-        int id = Integer.parseInt(detailPage.substring(detailPage.lastIndexOf('/')+1));
+        int id = Integer.parseInt(detailPage.substring(detailPage.lastIndexOf('/') + 1));
+        if (detailPage.startsWith("//")) {
+          detailPage = "http:" + detailPage;
+        }
         GalleryImage galleryImage = new GalleryImage(id);
         galleryImage.setDetailPath(detailPage);
         galleryImage.setRating(rating);

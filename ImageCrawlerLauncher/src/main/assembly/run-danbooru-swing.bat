@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.launcher.App danbooru swing
+start javaw -cp lib/* com.imagecrawl.launcher.App -swing danbooru
