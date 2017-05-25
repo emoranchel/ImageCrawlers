@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.launcher.App konachan swing
+start javaw -cp lib/* com.imagecrawl.launcher.App -swing konachan

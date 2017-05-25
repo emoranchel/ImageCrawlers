@@ -1,5 +1,6 @@
 package com.imagecrawl.launcher;
 
+import com.imagecrawl.ImageCrawlFactory;
 import com.imagecrawl.api.API;
 import com.imagecrawl.sankakunator.SankakuCrawlerFactory;
 import com.imagecrawl.sankakutop.SankakuTopCrawlerFactory;
@@ -10,6 +11,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.asmatron.messengine.ControlEngine;
+import org.asmatron.messengine.MessEngine;
 import org.asmatron.messengine.engines.Engine;
 
 public abstract class BaseApp {
@@ -66,9 +69,9 @@ public abstract class BaseApp {
 
   public abstract void stop();
 
-  public abstract void start();
+  public abstract void start() throws Exception;
 
-  protected void setupFactory(Engine engine) {
+  protected void setupFactory(Engine engine) throws Exception {
     if (parameters.getRaw().contains("konachan")) {
       engine.set(API.Model.FACTORY, new KonachanCrawlerFactory(engine, engine), null);
       engine.set(API.Model.TITLE, "Konachan.com", null);
@@ -81,6 +84,9 @@ public abstract class BaseApp {
     } else if (parameters.getRaw().contains("sankakuTop")) {
       engine.set(API.Model.FACTORY, new SankakuTopCrawlerFactory(engine, engine), null);
       engine.set(API.Model.TITLE, "SankakuTop.com", null);
+    } else if (parameters.named.containsKey("-factory")) {
+      engine.set(API.Model.TITLE, "custom", null);
+      engine.set(API.Model.FACTORY, (ImageCrawlFactory) Class.forName(parameters.named.get("-factory")).getConstructor(ControlEngine.class, MessEngine.class).newInstance(engine, engine), null);
     }
   }
 

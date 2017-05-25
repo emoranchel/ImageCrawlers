@@ -1,1 +1,1 @@
-start javaw -cp ".;lib/*" com.imagecrawl.launcher.App konachan fx
+start javaw -cp lib/* com.imagecrawl.launcher.App -fx konachan
