@@ -53,7 +53,7 @@ public abstract class DownloadTask extends ImageTask {
         }
         try {
             updateStatus(GalleryImage.Status.Downloading);
-            HttpResponse response = httpGet(getSourceUrl());
+            HttpResponse response = httpGetDownload(getSourceUrl());
             if (response.getStatusLine().getStatusCode() != 200) {
                 updateStatus(GalleryImage.Status.DownloadError, "HttpError [" + response.getStatusLine().getStatusCode() + "]");
                 return;

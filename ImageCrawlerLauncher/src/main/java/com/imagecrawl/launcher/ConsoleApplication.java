@@ -34,6 +34,11 @@ public class ConsoleApplication extends BaseApp {
     engine.set(API.Model.HTTP_HANDLER, new HttpHandler() {
 
       @Override
+      public HttpResponse getDownload(String string) throws Exception {
+        return get(string);
+      }
+
+      @Override
       public HttpResponse get(String string) throws Exception {
         System.out.println("REQUEST::" + string);
         int retry = 0;
