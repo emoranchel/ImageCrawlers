@@ -47,6 +47,11 @@ public abstract class BaseTask<T> implements Runnable {
         messEngine.send(new CrawlerMessage<>(messageId, action, body));
     }
 
+    protected HttpResponse httpGetDownload(String string) throws Exception {
+        HttpHandler httpHandler = controlEngine.get(API.Model.HTTP_HANDLER);
+        return httpHandler.getDownload(string);     
+    }
+    
     protected HttpResponse httpGet(String string) throws Exception {
         HttpHandler httpHandler = controlEngine.get(API.Model.HTTP_HANDLER);
         return httpHandler.get(string);

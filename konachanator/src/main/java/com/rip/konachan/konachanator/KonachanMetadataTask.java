@@ -24,22 +24,26 @@ public class KonachanMetadataTask extends MetadataTask {
 
   @Override
   protected void scan(String line) {
-    if (line.contains("<li>Rating: ")) {
-      String rating = line.substring(line.indexOf("<li>Rating: ") + 12);
-      rating = rating.substring(0, rating.indexOf("<")).trim();
-      value.setRating(rating);
-    }
-    while (line.indexOf('<') >= 0 && line.indexOf('>') >= 0) {
-      int openTagIndex = line.indexOf('<') + 1;
-      int closeTagIndex = line.indexOf('>');
-      if (openTagIndex < closeTagIndex) {
-        String tag = line.substring(openTagIndex, closeTagIndex).trim();
-        if (isTag(tag, "a", "ul", "li")) {
-          HtmlTag htmlTag = new HtmlTag(tag);
-          handleTag(htmlTag);
-        }
+    try {
+      if (line.contains("<li>Rating: ")) {
+        String rating = line.substring(line.indexOf("<li>Rating: ") + 12);
+        rating = rating.substring(0, rating.indexOf("<")).trim();
+        value.setRating(rating);
       }
-      line = line.substring(closeTagIndex + 1);
+      while (line.indexOf('<') >= 0 && line.indexOf('>') >= 0) {
+        int openTagIndex = line.indexOf('<') + 1;
+        int closeTagIndex = line.indexOf('>');
+        if (openTagIndex < closeTagIndex) {
+          String tag = line.substring(openTagIndex, closeTagIndex).trim();
+          if (isTag(tag, "a", "ul", "li")) {
+            HtmlTag htmlTag = new HtmlTag(tag);
+            handleTag(htmlTag);
+          }
+        }
+        line = line.substring(closeTagIndex + 1);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -70,7 +74,7 @@ public class KonachanMetadataTask extends MetadataTask {
         if (href.startsWith("//")) {
           href = "http:" + href;
         }
-        if (href.startsWith("http://konachan.com/image/")
+        if ((href.startsWith("http://konachan.com/image/") || href.startsWith("https://konachan.com/image/"))
                 && href.contains("Konachan.com")
                 && cssclass != null
                 && cssclass.contains("original-file")) {
