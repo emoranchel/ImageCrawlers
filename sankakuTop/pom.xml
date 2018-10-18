@@ -23,16 +23,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.apache.httpcomponents</groupId>
-      <artifactId>httpclient</artifactId>
-      <version>4.2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.4</version>
-    </dependency>
-    <dependency>
       <groupId>com.image-crawl</groupId>
       <artifactId>ImageCrawlerCore</artifactId>
       <version>${project.version}</version>
@@ -41,11 +31,6 @@
       <groupId>com.image-crawl</groupId>
       <artifactId>sankakunator</artifactId>
       <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.json</artifactId>
-      <version>1.0.2</version>
     </dependency>
   </dependencies>
 </project>

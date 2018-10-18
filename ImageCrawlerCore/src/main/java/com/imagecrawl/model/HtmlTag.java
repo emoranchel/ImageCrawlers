@@ -89,6 +89,10 @@ public class HtmlTag {
     return this.type == type;
   }
 
+  public boolean has(String attribute) {
+    return attributes.containsKey(attribute);
+  }
+
   public boolean has(String attribute, String value) {
     return value.equals(get(attribute));
   }
